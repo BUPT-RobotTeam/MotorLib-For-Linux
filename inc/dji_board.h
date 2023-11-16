@@ -1,7 +1,7 @@
 #ifndef DJI_BOARD_H_
 #define DJI_BOARD_H_
 
-#include "third_party/bupt_can_node/inc/bupt_can.h"
+#include "bupt_can.h"
 #include <memory>
 #include <array>
 
