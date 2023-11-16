@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named motorLib
+
+# Build rule for target.
+motorLib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 motorLib
+.PHONY : motorLib
+
+# fast build rule for target.
+motorLib/fast:
+	$(MAKE) -f CMakeFiles/motorLib.dir/build.make CMakeFiles/motorLib.dir/build
+.PHONY : motorLib/fast
+
+#=============================================================================
 # Target rules for targets named bupt_can_node
 
 # Build rule for target.
@@ -136,6 +149,33 @@ bupt_can/fast:
 	$(MAKE) -f third_party/bupt_can_node/CMakeFiles/bupt_can.dir/build.make third_party/bupt_can_node/CMakeFiles/bupt_can.dir/build
 .PHONY : bupt_can/fast
 
+src/dji_board.o: src/dji_board.cpp.o
+
+.PHONY : src/dji_board.o
+
+# target to build an object file
+src/dji_board.cpp.o:
+	$(MAKE) -f CMakeFiles/motorLib.dir/build.make CMakeFiles/motorLib.dir/src/dji_board.cpp.o
+.PHONY : src/dji_board.cpp.o
+
+src/dji_board.i: src/dji_board.cpp.i
+
+.PHONY : src/dji_board.i
+
+# target to preprocess a source file
+src/dji_board.cpp.i:
+	$(MAKE) -f CMakeFiles/motorLib.dir/build.make CMakeFiles/motorLib.dir/src/dji_board.cpp.i
+.PHONY : src/dji_board.cpp.i
+
+src/dji_board.s: src/dji_board.cpp.s
+
+.PHONY : src/dji_board.s
+
+# target to generate assembly for a file
+src/dji_board.cpp.s:
+	$(MAKE) -f CMakeFiles/motorLib.dir/build.make CMakeFiles/motorLib.dir/src/dji_board.cpp.s
+.PHONY : src/dji_board.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -144,8 +184,12 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... motorLib"
 	@echo "... bupt_can_node"
 	@echo "... bupt_can"
+	@echo "... src/dji_board.o"
+	@echo "... src/dji_board.i"
+	@echo "... src/dji_board.s"
 .PHONY : help
 
 

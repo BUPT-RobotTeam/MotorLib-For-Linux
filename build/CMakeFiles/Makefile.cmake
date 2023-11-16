@@ -47,6 +47,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+  "CMakeFiles/motorLib.dir/DependInfo.cmake"
   "third_party/bupt_can_node/CMakeFiles/bupt_can_node.dir/DependInfo.cmake"
   "third_party/bupt_can_node/CMakeFiles/bupt_can.dir/DependInfo.cmake"
   )

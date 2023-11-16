@@ -17,10 +17,13 @@ include_directories(inc)
 
 set(
     MOTOR_LIB_SRC
-    src/dji_driver.cpp
+    src/dji_board.cpp
 )
 
 set(
     MOTOR_LIB_INC
-    inc/dji_driver.h
+    inc/dji_board.h
 )
+
+add_library(motorLib STATIC ${MOTOR_LIB_SRC} ${MOTOR_LIB_INC})
+target_link_libraries(motorLib bupt_can)

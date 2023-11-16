@@ -1,0 +1,3 @@
+[submodule "third_party/bupt_can_node"]
+	path = third_party/bupt_can_node
+	url = https://github.com/nanjo712/bupt_can_node

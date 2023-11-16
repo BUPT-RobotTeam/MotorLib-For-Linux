@@ -53,6 +53,7 @@ CMAKE_BINARY_DIR = /home/jetson/bupt_lib/MotorLib/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/motorLib.dir/all
 all: third_party/bupt_can_node/all
 
 .PHONY : all
@@ -63,6 +64,7 @@ preinstall: third_party/bupt_can_node/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/motorLib.dir/clean
 clean: third_party/bupt_can_node/clean
 
 .PHONY : clean
@@ -86,6 +88,33 @@ third_party/bupt_can_node/clean: third_party/bupt_can_node/CMakeFiles/bupt_can_n
 third_party/bupt_can_node/clean: third_party/bupt_can_node/CMakeFiles/bupt_can.dir/clean
 
 .PHONY : third_party/bupt_can_node/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/motorLib.dir
+
+# All Build rule for target.
+CMakeFiles/motorLib.dir/all: third_party/bupt_can_node/CMakeFiles/bupt_can.dir/all
+	$(MAKE) -f CMakeFiles/motorLib.dir/build.make CMakeFiles/motorLib.dir/depend
+	$(MAKE) -f CMakeFiles/motorLib.dir/build.make CMakeFiles/motorLib.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jetson/bupt_lib/MotorLib/build/CMakeFiles --progress-num=5,6 "Built target motorLib"
+.PHONY : CMakeFiles/motorLib.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/motorLib.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jetson/bupt_lib/MotorLib/build/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/motorLib.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jetson/bupt_lib/MotorLib/build/CMakeFiles 0
+.PHONY : CMakeFiles/motorLib.dir/rule
+
+# Convenience name for target.
+motorLib: CMakeFiles/motorLib.dir/rule
+
+.PHONY : motorLib
+
+# clean rule for target.
+CMakeFiles/motorLib.dir/clean:
+	$(MAKE) -f CMakeFiles/motorLib.dir/build.make CMakeFiles/motorLib.dir/clean
+.PHONY : CMakeFiles/motorLib.dir/clean
 
 #=============================================================================
 # Target rules for target third_party/bupt_can_node/CMakeFiles/bupt_can_node.dir
