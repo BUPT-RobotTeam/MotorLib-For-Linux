@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbupt_can.a  CMakeFiles/bupt_can.dir/src/bupt_can.cpp.o
+/usr/bin/ranlib libbupt_can.a

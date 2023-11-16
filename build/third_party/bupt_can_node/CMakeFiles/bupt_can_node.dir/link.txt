@@ -1,0 +1,1 @@
+/usr/bin/g++   -O2 -O2 -g   CMakeFiles/bupt_can_node.dir/example/socket_can_test.cpp.o  -o bupt_can_node  libbupt_can.a -lpthread 
