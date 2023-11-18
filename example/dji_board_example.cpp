@@ -12,7 +12,7 @@ int main()
     board.MotorOn(1);
 
     int vel=0;
-    int step=100;
+    int step=10;
     while (true)
     {
         board.VelCtrl(1,vel);
