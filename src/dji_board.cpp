@@ -26,7 +26,7 @@ void DJIBoard::MotorOn(const uint16_t &motorId)
     data[1] = (motorId >> 8) & 0xff;
     data[2] = MOTORON;
     data[3] = 0;
-    can_handle->send_can(canId, 8, data);
+    can_handle->send_can(canId, Can::CAN_ID_STD, 8, data);
 }
 
 void DJIBoard::MotorOff(const uint16_t &motorId)
@@ -37,7 +37,7 @@ void DJIBoard::MotorOff(const uint16_t &motorId)
     data[1] = (motorId >> 8) & 0xff;
     data[2] = MOTOROFF;
     data[3] = 0;
-    can_handle->send_can(canId, 8, data);
+    can_handle->send_can(canId, Can::CAN_ID_STD, 8, data);
 }
 
 void DJIBoard::VelCfg(const uint16_t &motorId)
@@ -48,7 +48,7 @@ void DJIBoard::VelCfg(const uint16_t &motorId)
     data[1] = (motorId >> 8) & 0xff;
     data[2] = VELCFG;
     data[3] = 0;
-    can_handle->send_can(canId, 8, data);
+    can_handle->send_can(canId, Can::CAN_ID_STD, 8, data);
 }
 
 void DJIBoard::LimitVelCfg(const uint16_t &motorId)
@@ -59,7 +59,7 @@ void DJIBoard::LimitVelCfg(const uint16_t &motorId)
     data[1] = (motorId >> 8) & 0xff;
     data[2] = LIMITVELCFG;
     data[3] = 0;
-    can_handle->send_can(canId, 8, data);
+    can_handle->send_can(canId, Can::CAN_ID_STD, 8, data);
 }
 
 void DJIBoard::PosCfg(const uint16_t &motorId, const int &maxPosVel)
@@ -74,7 +74,7 @@ void DJIBoard::PosCfg(const uint16_t &motorId, const int &maxPosVel)
     data[5] = (maxPosVel >> 8) & 0xff;
     data[6] = (maxPosVel >> 16) & 0xff;
     data[7] = (maxPosVel >> 24) & 0xff;
-    can_handle->send_can(canId, 8, data);
+    can_handle->send_can(canId, Can::CAN_ID_STD, 8, data);
 }
 
 void DJIBoard::NoInitPosCfg(const uint16_t &motorId, const int &maxPosVel)
@@ -89,7 +89,7 @@ void DJIBoard::NoInitPosCfg(const uint16_t &motorId, const int &maxPosVel)
     data[5] = (maxPosVel >> 8) & 0xff;
     data[6] = (maxPosVel >> 16) & 0xff;
     data[7] = (maxPosVel >> 24) & 0xff;
-    can_handle->send_can(canId, 8, data);
+    can_handle->send_can(canId, Can::CAN_ID_STD, 8, data);
 }
 
 void DJIBoard::CurCfg(const uint16_t &motorId)
@@ -100,7 +100,7 @@ void DJIBoard::CurCfg(const uint16_t &motorId)
     data[1] = (motorId >> 8) & 0xff;
     data[2] = CURCFG;
     data[3] = 0;
-    can_handle->send_can(canId, 8, data);
+    can_handle->send_can(canId, Can::CAN_ID_STD, 8, data);
 }
 
 void DJIBoard::VelCtrl(const uint16_t &motorId, const int32_t &vel)
@@ -115,7 +115,7 @@ void DJIBoard::VelCtrl(const uint16_t &motorId, const int32_t &vel)
     data[5] = (vel >> 8) & 0xff;
     data[6] = (vel >> 16) & 0xff;
     data[7] = (vel >> 24) & 0xff;
-    can_handle->send_can(canId, 8, data);
+    can_handle->send_can(canId, Can::CAN_ID_STD, 8, data);
 }
 
 void DJIBoard::PosCtrl(const uint16_t &motorId, const int32_t &pos)
@@ -130,7 +130,7 @@ void DJIBoard::PosCtrl(const uint16_t &motorId, const int32_t &pos)
     data[5] = (pos >> 8) & 0xff;
     data[6] = (pos >> 16) & 0xff;
     data[7] = (pos >> 24) & 0xff;
-    can_handle->send_can(canId, 8, data);
+    can_handle->send_can(canId, Can::CAN_ID_STD, 8, data);
 }
 
 void DJIBoard::CurCtrl(const uint16_t &motorId, const int32_t &cur)
@@ -145,7 +145,7 @@ void DJIBoard::CurCtrl(const uint16_t &motorId, const int32_t &cur)
     data[5] = (cur >> 8) & 0xff;
     data[6] = (cur >> 16) & 0xff;
     data[7] = (cur >> 24) & 0xff;
-    can_handle->send_can(canId, 8, data);
+    can_handle->send_can(canId, Can::CAN_ID_STD, 8, data);
 }
 
 void DJIBoard::ReadInfo(const uint16_t &motorId)
@@ -156,7 +156,7 @@ void DJIBoard::ReadInfo(const uint16_t &motorId)
     data[1] = (motorId >> 8) & 0xff;
     data[2] = READINFO;
     data[3] = 0;
-    can_handle->send_can(canId, 8, data);
+    can_handle->send_can(canId, Can::CAN_ID_STD, 8, data);
 }
 
 void DJIBoard::VelCtrlAll(const std::array<int16_t,4> &vel)
@@ -168,7 +168,7 @@ void DJIBoard::VelCtrlAll(const std::array<int16_t,4> &vel)
         data[i * 2] = vel[i] & 0xff;
         data[i * 2 + 1] = (vel[i] >> 8) & 0xff;
     }
-    can_handle->send_can(canId, 8, data);
+    can_handle->send_can(canId, Can::CAN_ID_STD, 8, data);
 }
 
 void DJIBoard::PosCtrlAll(const std::array<int16_t,4> &pos)
@@ -180,7 +180,7 @@ void DJIBoard::PosCtrlAll(const std::array<int16_t,4> &pos)
         data[i * 2] = pos[i] & 0xff;
         data[i * 2 + 1] = (pos[i] >> 8) & 0xff;
     }
-    can_handle->send_can(canId, 8, data);
+    can_handle->send_can(canId, Can::CAN_ID_STD, 8, data);
 }
 
 void DJIBoard::Homing(const uint16_t &motorId, const int16_t &vel, const int16_t &cur)
@@ -195,7 +195,7 @@ void DJIBoard::Homing(const uint16_t &motorId, const int16_t &vel, const int16_t
     data[5] = (vel >> 8) & 0xff;
     data[6] = cur & 0xff;
     data[7] = (cur >> 8) & 0xff;
-    can_handle->send_can(canId, 8, data);
+    can_handle->send_can(canId, Can::CAN_ID_STD, 8, data);
 }
 
 

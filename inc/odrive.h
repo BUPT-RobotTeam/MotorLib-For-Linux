@@ -1,7 +1,10 @@
-#ifndef __ODRIVE_CAN_H
-#define __ODRIVE_CAN_H
+#ifndef __ODRIVE_H
+#define __ODRIVE_H
 
-#include "motor_driver.h"
+//Wait for Developing
+
+
+// This is for STM32
 #ifdef USE_MTR_DRIVER_ODRIVE
 
 #include "stm32f4xx.h"
@@ -160,4 +163,6 @@ uint8_t ODrive_CANSendMsg(CAN_HandleTypeDef *hcan, ODrive_t *odrive, uint8_t axi
 // void odrive_can_send_position(ODrive_Axis_e axis, float pos);
 
 #endif
+
+
 #endif /* __ODRIVE_CAN_H */

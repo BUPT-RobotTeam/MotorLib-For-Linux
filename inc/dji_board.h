@@ -31,7 +31,6 @@ private:
 public:
     explicit DJIBoard(const uint32_t &boardId,const std::shared_ptr<Can> &can_handle = nullptr);
     ~DJIBoard();
-
     void MotorOn(const uint16_t &motorId);
     void MotorOff(const uint16_t &motorId);
     void VelCfg(const uint16_t &motorId);
