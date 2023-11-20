@@ -32,8 +32,9 @@ private:
     static const int CURRENT_HANDBRAKE_REL_SCALE = 100000;
     uint32_t vesc_id;
     std::shared_ptr<Can> can_handle;
+    std::shared_ptr< std::array<uint8_t,8> > buffer;
     const int GetVESCScale(const CAN_PACKET_ID &id);
-    void SetBufferWith32Bit(const std::shared_ptr< std::array<uint8_t,8> > &buffer,const uint32_t &val);
+    void SetBufferWith32Bit(const uint32_t &val);
 public:
     VESCBoard(const uint32_t &vesc_id, const std::shared_ptr<Can> &can_handle = nullptr);
     ~VESCBoard();
