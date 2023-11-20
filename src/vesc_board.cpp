@@ -30,6 +30,7 @@ VESCBoard::VESCBoard(const uint32_t &vesc_id, const std::shared_ptr<Can> &can_ha
     else 
         this->can_handle = std::make_shared<Can>("can0");
     this->can_handle->can_start();
+    this->buffer = std::make_shared< std::array<uint8_t,8> >();
 }
 
 VESCBoard::~VESCBoard()
