@@ -1,37 +1,62 @@
-/**
-  ******************************************************************************
-  * @file           vesc_can.h
-  * @author         ZohyCao
-  * @version        1.0
-  * @brief          本杰明电调(VESC) CAN总线驱动程序
-  *                 适用于本杰明电调（HW:410\412\420, FW:3.61\3.62）
-  * 使用步骤：
-  *     1.使用前需修改comm_can_transmit_eid()函数，使用自己的CAN拓展帧函数发送指令
-  * 
-  * 注意事项：
-  *     1.与大疆robomaster的电调一起使用时可能会造成指令冲突，使用时应测试ID是否合理
-  * 
-  * TODO:
-  *     1.增加CAN PING函数
-  *         
-  ******************************************************************************
-  *
-  * COPYRIGHT(c) 2019 ZohyCao
-  *
-  ******************************************************************************
-  */
 #ifndef VESC_CAN_H_
 #define VESC_CAN_H_
 
-/* Includes ---------------------------------------------------*/
-#include <stdint.h>
-#include <stdbool.h>
-#include "motor_driver.h"
-#include "BUPTLib_port.h"
-/* Public Macro---------------------------------------------------*/
-//settings
-#define VESC_CAN_ENABLE 1
+#include <cstdint>
+#include "bupt_can.h"
 
+class VESCBoard
+{
+private:
+public:
+    enum CAN_PACKET_ID{
+        CAN_PACKET_SET_DUTY = 0,
+	    CAN_PACKET_SET_CURRENT,
+	    CAN_PACKET_SET_CURRENT_BRAKE,
+	    CAN_PACKET_SET_RPM,
+	    CAN_PACKET_SET_POS,
+	    CAN_PACKET_SET_CURRENT_REL = 10,
+	    CAN_PACKET_SET_CURRENT_BRAKE_REL,
+	    CAN_PACKET_SET_CURRENT_HANDBRAKE,
+	    CAN_PACKET_SET_CURRENT_HANDBRAKE_REL,
+	    CAN_PACKET_MAKE_ENUM_32_BITS = 0xFFFFFFFF,
+    };
+private:
+    static const int DUTY_SCALE = 100000;
+    static const int CURRENT_SCALE = 1000;
+    static const int CURRENT_BRAKE_SCALE = 1000;
+    static const int RPM_SCALE = 1;
+    static const int POS_SCALE = 1000000;
+    static const int CURRENT_REL_SCALE = 100000;
+    static const int CURRENT_BRAKE_REL_SCALE = 100000;
+    static const int CURRENT_HANDBRAKE_SCALE = 1000;
+    static const int CURRENT_HANDBRAKE_REL_SCALE = 100000;
+    uint32_t vesc_id;
+    std::shared_ptr<Can> can_handle;
+    const int GetVESCScale(const CAN_PACKET_ID &id);
+    void SetBufferWith32Bit(const std::shared_ptr< std::array<uint8_t,8> > &buffer,const uint32_t &val);
+public:
+    VESCBoard(const uint32_t &vesc_id, const std::shared_ptr<Can> &can_handle = nullptr);
+    ~VESCBoard();
+    const uint32_t SetFrameID(const uint32_t &vesc_id,const CAN_PACKET_ID &id);
+    void SetDuty(const float &duty);
+    void SetCurrent(const float &current);
+    void SetCurrentBrake(const float &current);
+    void SetRPM(const float &rpm);
+    void SetPos(const float &pos);
+    void SetCurrentRel(const float &current_rel);
+    void SetCurrentBrakeRel(const float &current_rel);
+    void SetCurrentHandBrake(const float &current);
+    void SetCurrentHandBrakeRel(const float &current_rel);
+    
+    void SendControlMSg(const float &val, const CAN_PACKET_ID &command_id);
+
+    // Currently not supported
+    //void SetCurrentLimits(const float &min, const float &max); 
+    //void SetCurrentLimitsIn(const float &min, const float &max);
+};
+
+
+#if 0
 /* Public Types---------------------------------------------------*/
 typedef uint32_t systime_t; //为了与本杰明电调代码保持一致
 
@@ -187,6 +212,6 @@ float buffer_get_float16(const uint8_t *buffer, float scale, int32_t *index);
 float buffer_get_float32(const uint8_t *buffer, float scale, int32_t *index);
 float buffer_get_float32_auto(const uint8_t *buffer, int32_t *index);
 
-
+#endif
 
 #endif /* VESC_CAN_H_ */
