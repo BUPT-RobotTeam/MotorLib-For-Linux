@@ -25,8 +25,8 @@ set(
 
 set(
     MOTOR_LIB_INC
-    include/dji_board.h
-    include/vesc_board.h
+    include/motorLib/dji_board.h
+    include/motorLib/vesc_board.h
 )
 
 set(
