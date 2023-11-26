@@ -1,4 +1,4 @@
-#include "dji_board.h"
+#include "motorLib/dji_board.h"
 
 DJIBoard::DJIBoard(const uint32_t &boardId, const std::shared_ptr<Can> &can_handle)
 {

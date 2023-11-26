@@ -14,8 +14,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O2")
 
 add_subdirectory(third_party/bupt_can_node)
-include_directories(third_party/bupt_can_node/inc)
-include_directories(inc)
+
+include_directories(third_party/bupt_can_node/include)
+include_directories(include)
 
 set(
     MOTOR_LIB_SRC
@@ -47,3 +48,6 @@ target_link_libraries(djiBoard_example motorLib)
 
 add_executable(vescBoard_example ${VESCBOARD_EXAMPLE})
 target_link_libraries(vescBoard_example motorLib)
+
+install(DIRECTORY include/ DESTINATION include)
+install(TARGETS motorLib DESTINATION lib)

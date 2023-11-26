@@ -2,7 +2,7 @@
 #define VESC_BOARD_H_
 
 #include <cstdint>
-#include "bupt_can.h"
+#include "bupt_can_node/bupt_can.h"
 
 class VESCBoard
 {
