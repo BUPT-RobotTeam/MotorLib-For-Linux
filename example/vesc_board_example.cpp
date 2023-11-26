@@ -1,4 +1,4 @@
-#include "bupt_can_node/bupt_can.h"
+#include "bupt_can/bupt_can.h"
 #include "motorLib/vesc_board.h"
 #include <thread>
 #include <iostream>

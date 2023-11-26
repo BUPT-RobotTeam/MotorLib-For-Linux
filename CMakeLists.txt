@@ -1,53 +1,53 @@
 cmake_minimum_required(VERSION 3.16)
 
-set(CMAKE_CXX_COMPILER "/usr/bin/g++")
-set(CMAKE_C_COMPILER "/usr/bin/gcc")
+project(motorLib C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-project(motorLib C CXX)
+find_package(bupt_can REQUIRED)
+find_package(Threads REQUIRED)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O2")
-
-add_subdirectory(third_party/bupt_can_node)
-
-include_directories(third_party/bupt_can_node/include)
-include_directories(include)
-
-set(
-    MOTOR_LIB_SRC
+# Define the motorLib library
+add_library(motorLib
     src/dji_board.cpp
     src/vesc_board.cpp
 )
 
-set(
-    MOTOR_LIB_INC
-    include/motorLib/dji_board.h
-    include/motorLib/vesc_board.h
+target_include_directories(motorLib
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
 )
 
-set(
-    DJIBOARD_EXAMPLE
+target_compile_options(motorLib
+    PRIVATE
+        -O2
+)
+
+target_link_libraries(motorLib
+    PRIVATE
+        bupt_can
+        Threads::Threads
+)
+
+# Define the examples
+add_executable(djiBoard_example
     example/dji_board_example.cpp
 )
 
-set(
-    VESCBOARD_EXAMPLE
+add_executable(vescBoard_example
     example/vesc_board_example.cpp
 )
 
-add_library(motorLib STATIC ${MOTOR_LIB_SRC} ${MOTOR_LIB_INC})
-target_link_libraries(motorLib bupt_can)
+target_link_libraries(djiBoard_example
+    PRIVATE
+        motorLib
+)
 
-add_executable(djiBoard_example ${DJIBOARD_EXAMPLE})
-target_link_libraries(djiBoard_example motorLib)
-
-add_executable(vescBoard_example ${VESCBOARD_EXAMPLE})
-target_link_libraries(vescBoard_example motorLib)
-
-install(DIRECTORY include/ DESTINATION include)
-install(TARGETS motorLib DESTINATION lib)
+target_link_libraries(vescBoard_example
+    PRIVATE
+        motorLib
+)
