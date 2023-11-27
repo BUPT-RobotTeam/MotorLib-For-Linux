@@ -1,5 +1,5 @@
 #include "bupt_can/bupt_can.h"
-#include "motorLib/dji_board.h"
+#include "motor_lib/dji_board.h"
 #include <chrono>
 #include <thread>
 #include <iostream>

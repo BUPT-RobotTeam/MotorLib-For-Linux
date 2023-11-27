@@ -15,6 +15,8 @@ git clone https://github.com/BUPT-RobotTeam/MotorLib-For-Linux.git
 git submodule update --init --recursive
 ```
 
+依赖于[BUPT_CAN](https://github.com/nanjo712/bupt_can_node)项目
+
 ### 2.1 编译
 
 ```shell
@@ -22,7 +24,7 @@ cd MotorLib-For-Linux
 mkdir build
 cd build
 cmake ..
-make
+make install
 ```
 
 ### 2.2 运行

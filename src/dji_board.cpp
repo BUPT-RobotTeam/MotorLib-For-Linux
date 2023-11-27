@@ -1,4 +1,4 @@
-#include "motorLib/dji_board.h"
+#include "motor_lib/dji_board.h"
 
 DJIBoard::DJIBoard(const uint32_t &boardId, const std::shared_ptr<Can> &can_handle)
 {
@@ -198,6 +198,3 @@ void DJIBoard::Homing(const uint16_t &motorId, const int16_t &vel, const int16_t
     data[7] = (cur >> 8) & 0xff;
     can_handle->send_can(canId, Can::CAN_ID_STD, 8, data);
 }
-
-
-
