@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(motorLib VERSION 1.0 LANGUAGES C CXX)
+project(motor_lib VERSION 1.0 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -10,24 +10,24 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 find_package(bupt_can REQUIRED)
 find_package(Threads REQUIRED)
 
-# Define the motorLib library
-add_library(motorLib
+# Define the motor_lib library
+add_library(motor_lib
     src/dji_board.cpp
     src/vesc_board.cpp
 )
 
-target_include_directories(motorLib
+target_include_directories(motor_lib
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
 )
 
-target_compile_options(motorLib
+target_compile_options(motor_lib
     PRIVATE
         -O2
 )
 
-target_link_libraries(motorLib
+target_link_libraries(motor_lib
     PRIVATE
         bupt_can
 )
@@ -43,13 +43,13 @@ add_executable(vescBoard_example
 
 target_link_libraries(djiBoard_example
     PRIVATE
-        motorLib
+        motor_lib
         Threads::Threads
 )
 
 target_link_libraries(vescBoard_example
     PRIVATE
-        motorLib
+        motor_lib
         Threads::Threads
 )
 
