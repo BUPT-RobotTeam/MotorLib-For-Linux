@@ -17,6 +17,8 @@ git submodule update --init --recursive
 
 依赖于[BUPT_CAN](https://github.com/nanjo712/bupt_can_node)项目
 
+已经以子模块的形式添加到MotorLib-For-Linux中，你可以再third_party/bupt_can_node目录下找到它。
+
 ### 2.1 编译
 
 ```shell
@@ -27,10 +29,19 @@ cmake ..
 make install
 ```
 
+这将会导出库文件到/usr/local/lib，头文件到/usr/local/include, 你可以通过修改CMakeLists.txt中的`CMAKE_INSTALL_PREFIX`来修改安装路径。
+
+此后如果你需要在ROS中使用，你需要在你的ROS包的CMakeLists.txt中添加：
+
+```cmake
+find_package(motor_lib REQUIRED)
+```
+
 ### 2.2 运行
 
+请在正确设置CAN设备后再运行。
+
 ```shell
-./third_party/bupt_can_node/setup_can.sh
 cd MotorLib-For-Linux/build
 ./djiBoard_example
 ```
