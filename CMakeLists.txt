@@ -30,7 +30,6 @@ target_compile_options(motorLib
 target_link_libraries(motorLib
     PRIVATE
         bupt_can
-        Threads::Threads
 )
 
 # Define the examples
@@ -45,9 +44,11 @@ add_executable(vescBoard_example
 target_link_libraries(djiBoard_example
     PRIVATE
         motorLib
+        Threads::Threads
 )
 
 target_link_libraries(vescBoard_example
     PRIVATE
         motorLib
+        Threads::Threads
 )
