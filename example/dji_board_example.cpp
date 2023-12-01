@@ -8,6 +8,7 @@ int main()
 {
     std::shared_ptr<Can> can_handle = std::make_shared<Can>("can0");
     DJIBoard board(1,can_handle);
+    can_handle->can_start();
     board.VelCfg(1);
     board.MotorOn(1);
     int vel=0;

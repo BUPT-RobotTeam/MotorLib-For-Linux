@@ -7,6 +7,7 @@ int main()
 {
     std::shared_ptr<Can> can_handle = std::make_shared<Can>("vcan0");
     VESCBoard vesc(1, can_handle);
+    can_handle->can_start();
     
     // 占空比测试
     std::cout<<"Duty test"<<std::endl;

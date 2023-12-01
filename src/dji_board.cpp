@@ -6,12 +6,12 @@ DJIBoard::DJIBoard(const uint32_t &boardId, const std::shared_ptr<Can> &can_hand
     if (can_handle == nullptr)
     {
         this->can_handle = std::make_shared<Can>("can0");
+        can_handle->can_start();
     }
     else
     {
         this->can_handle = can_handle;
     }
-    can_handle->can_start();
 }
 
 DJIBoard::~DJIBoard()
