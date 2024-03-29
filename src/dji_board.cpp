@@ -1,5 +1,7 @@
 #include "motor_lib/dji_board.h"
 
+#include<cstring>
+
 DJIBoard::DJIBoard(const uint32_t &boardId, const std::shared_ptr<Can> &can_handle)
 {
     this->boardId = boardId;
@@ -23,6 +25,7 @@ void DJIBoard::MotorOn(const uint16_t &motorId)
 {
     uint32_t canId = DJI_BASE_ID + boardId;
     std::array<uint8_t, 8> data;
+    memset(data.data(),0,sizeof(8));
     data[0] = motorId & 0xff;
     data[1] = (motorId >> 8) & 0xff;
     data[2] = MOTORON;
@@ -45,6 +48,7 @@ void DJIBoard::VelCfg(const uint16_t &motorId)
 {
     uint32_t canId = DJI_BASE_ID + boardId;
     std::array<uint8_t, 8> data;
+    memset(data.data(),0,sizeof(8));
     data[0] = motorId & 0xff;
     data[1] = (motorId >> 8) & 0xff;
     data[2] = VELCFG;
